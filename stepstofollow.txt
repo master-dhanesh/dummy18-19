@@ -1,0 +1,7 @@
+1. Install required packages for redux toolkit
+2. Create folder "store" -> further create a file "store.jsx" in "store" folder
+3. Configure store file and export store object and in "main.jsx" wrap <App /> with Provider and pass the store=store
+4. In order to store data we need to create "reducers" folder inside "store" folder and in "reducers" folder create desired "Slices" for e.g. "productSlice.jsx" and "userSlice.jsx"
+5. In slices write the code to create slice to store data in "initialState" and export reducer(data) and actions(functions)
+6. Import slices in store.jsx and add in reducer
+7. in order to access data of Store in any component we use "useSelector(cb(state))"
