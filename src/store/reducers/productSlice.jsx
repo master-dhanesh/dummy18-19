@@ -1,42 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
-    products: [
-        {
-            id: 1,
-            title: "Product 1",
-            price: 100,
-            description: "This is product 1",
-            image: "https://via.placeholder.com/150",
-        },
-        {
-            id: 2,
-            title: "Product 2",
-            price: 200,
-            description: "This is product 2",
-            image: "https://via.placeholder.com/150",
-        },
-        {
-            id: 3,
-            title: "Product 3",
-            price: 300,
-            description: "This is product 3",
-            image: "https://via.placeholder.com/150",
-        },
-    ],
+    data: [],
 };
 
 const ProductSlice = createSlice({
     name: "product",
     initialState,
     reducers: {
-        deleteProduct: (state, action) => {
-            state.products = state.products.filter(
-                (product, index) => index !== action.payload
-            );
+        addproducts: (state, action) => {
+            state.data = action.payload;
         },
     },
 });
 
 export default ProductSlice.reducer;
-export const { deleteProduct } = ProductSlice.actions;
+export const { addproducts } = ProductSlice.actions;
+
+export const asyncaddproducts = () => async (dispatch, getState) => {
+    const { data } = await axios.get("https://fakestoreapi.com/products");
+    dispatch(addproducts(data));
+};
